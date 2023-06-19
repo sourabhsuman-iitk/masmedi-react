@@ -1,37 +1,20 @@
-import { useCallback, useState } from "react";
-import axios from "axios";
-const apiEndpoint =
-  "https://dev.masmedi.com/masmedi_dev/admin1/apiv1.0/postlab-test-prescription.php";
+// import { useState } from "react";
+import DropContainer from "../drop-container";
+import Navbar from "../navbar";
+
 const Home = () => {
-  const [messageObject, setMessageObject] = useState({
-    visible: false,
-    message: "",
-  });
-  const [file, setFile] = useState();
-  const handleOnChange = (e) => {
-    setFile(e.target.files[0]);
-  };
-  const handleSubmitFile = async () => {
-    console.log(file);
-    const formData = new FormData();
-    formData.append("uid", "26");
-    formData.append("file", file);
-    console.log(formData);
-      try {
-        const res = await axios.post(apiEndpoint, formData);
-        const data = await res.json();
-        setMessageObject({
-          visible: true,
-          message: JSON.stringify(data),
-        });
-      } catch (err) {
-        console.error(err.message);
-        setMessageObject({
-          visible: true,
-          message: "Error uploading file",
-        });
-      }
-  };
+  // const [messageObject, setMessageObject] = useState({
+  //   visible: false,
+  //   message: "",
+  // });
+  // const [file, setFile] = useState();
+  // const handleOnChange = (e) => {
+  //   setFile(e.target.files[0]);
+  // };
+  // const handleSubmitFile = useCallback(() => {
+  //   handleApiRequest({ file, setMessageObject });
+  // }, [file]);
+
   return (
     <div
       style={{
@@ -43,27 +26,7 @@ const Home = () => {
         flexDirection: "column",
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          width: "100%",
-          height: "70px",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "#000000",
-        }}
-      >
-        <span
-          style={{
-            color: "#ffffff",
-            fontWeight: "700",
-            fontSize: "25px",
-            padding: "8px 20px",
-          }}
-        >
-          MasMedi App
-        </span>
-      </div>
+      <Navbar />
       <div
         style={{
           height: "100%",
@@ -73,13 +36,14 @@ const Home = () => {
           flexDirection: "column",
         }}
       >
-        <span
+        {/* <span
           style={{
-            fontSize: "15px",
+            fontSize: "18px",
             fontWeight: "500",
             padding: "10px 50px",
           }}
         >
+          .pdf, .doc, .docx, .rtf, .ppt, .pptx, .txt, .jpeg, .jpg, .png
           Upload a file
         </span>
         <input type="file" onChange={handleOnChange} />
@@ -93,8 +57,10 @@ const Home = () => {
           >
             {messageObject.message}
           </div>
-        )}
+        )} */}
+        <DropContainer />
       </div>
+      {/* <Dropzone /> */}
     </div>
   );
 };
