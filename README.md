@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# MasMedi
 
 ### React App to drag and drop/upload files.
 
